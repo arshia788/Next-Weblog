@@ -11,7 +11,9 @@ export async function POST(req){
         return NextResponse.json({status:'failed', message:"failed to connect to DB"})
     }
 
-    const {email, password}= await req.json().body;
+    const body= await req.json()
+    const {email, password}= body;
+    console.log(email, password);
 
     if(!email || !password){
         return NextResponse.json({status:'failed', message:"Invalid Data"})

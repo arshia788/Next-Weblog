@@ -20,7 +20,10 @@ const userSchema= new Schema({
                 type:Date,
                 default:()=>Date.now(),
             },
-            likes:0
+            likes:{
+                type:Number,
+                default:0
+            }
         }
     ],
     createdAt:{
@@ -30,6 +33,6 @@ const userSchema= new Schema({
 })
 
 
-const User= models("User") || model("User", userSchema)
+const User= models.User || model("User", userSchema)
 
 export default User;
