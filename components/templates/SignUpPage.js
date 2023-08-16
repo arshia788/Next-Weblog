@@ -1,11 +1,16 @@
 'use client'
 
-import { useState } from "react"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { FaEye } from "react-icons/fa6";
+import { FaEyeSlash } from "react-icons/fa6";
 
 function SignUpPage() {
 
     const [email, setEmail] = useState('');
-    const [password, setPasswrod] = useState('');
+    const [password, setPasswrod] = useState('password');
+    const router= useRouter()
 
     const signUpHandler=async()=>{
         const res= await fetch('/api/auth/signup',{
@@ -14,17 +19,27 @@ function SignUpPage() {
             headers:{"Content-Type":"application/json"}
         })
         const data= await res.json()
-        console.log(data);
+        if(data.status === 'success') router.replace('/signin')
+
+    }
+
+    const clickHandler=()=>{
+        if(password === 'text'){
+            setPasswrod('password')
+        }else{
+            setPasswrod('text')
+        }
     }
 
     return (
         <div className="flex justify-center items-center ">
 
-            <div className="flex flex-col h-72 gap-y-4 shadow-md shadow-gray-400 mt-12 p-3 rounded">
-                <h2>SignUp-Form</h2>
+            <div className="flex flex-col h-80 gap-y-5 shadow-md shadow-gray-400
+             mt-12 p-3 rounded">
+                <h2 className="text-center text-blue-700 font-semibold">SignUp-Form</h2>
 
-                <div className="flex flex-col gap-y-2 mt-3">
-                    <label htmlFor="email" className="text-zinc-500">Email</label>
+                <div className="flex flex-col gap-y-2 mt-3 ">
+                    <label htmlFor="email" className="text-blue-400">Email</label>
                     <input 
                     className="rounded outline-none border border-blue-700 p-1 "
                     onChange={e=>setEmail(e.target.value)}
@@ -32,12 +47,25 @@ function SignUpPage() {
                 </div>
 
                 <div className="flex flex-col gap-y-2">
-                    <label htmlFor="password" className="text-zinc-500">Password</label>
+                    <label htmlFor="password" className="text-blue-400">Password</label>
+                    
+                    <div className="relative flex border-blue-700 rounded border px-1 justify-between items-center">
                     <input
-                    type="password" 
-                    className="rounded outline-none border border-blue-700 p-1 "
+
+                    type={password}
+                    className=" rounded outline-none  p-1 "
                     onChange={e=>setPasswrod(e.target.value)}
                     id="password" value={password} placeholder="Password..."/>
+                    
+                    {
+                        password === 'text' ?
+                        <FaEye onClick={clickHandler} className="cursor-pointer"/>
+                        
+                        :
+                        <FaEyeSlash onClick={clickHandler} className="cursor-pointer"/>
+                    } 
+
+                    </div>
                 </div>
 
             <button
