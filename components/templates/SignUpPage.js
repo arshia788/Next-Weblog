@@ -6,11 +6,15 @@ import { useRouter } from "next/navigation";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function SignUpPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPasswrod] = useState('');
     const [type, setType]= useState('password')
+    const [check, setCheck]= useState(false);
     const router= useRouter()
 
     
@@ -22,7 +26,13 @@ function SignUpPage() {
             headers:{"Content-Type":"application/json"}
         })
         const data= await res.json()
-        if(data.status === 'success') router.replace('/signin')
+
+        if(data.status === 'success'){
+            router.replace('/signin')
+        }else{
+            toast.error(data.message)
+            setCheck(true)
+        }
     }
 
     const clickHandler=()=>{
@@ -41,22 +51,33 @@ function SignUpPage() {
                 <h2 className="text-center text-blue-700 font-semibold">SignUp-Form</h2>
 
                 <div className="flex flex-col gap-y-2 mt-3 ">
-                    <label htmlFor="email" className="text-blue-400">Email</label>
+
+                    <label htmlFor="email" className={
+                      `${check ? 'text-red-700':'text-blue-700'}`
+                    }>Email</label>
+
                     <input 
-                    className="rounded outline-none border border-blue-700 p-1 "
+                    className= {`${check ?
+                      'relative flex border-red-700 rounded border px-1 justify-between items-center p-1'
+                      : `relative flex border-blue-700 rounded border px-1 justify-between items-center p-1`} `}
                     onChange={e=>setEmail(e.target.value)}
                     id="email" value={email} placeholder="Email..."/>
                 </div>
 
                 <div className="flex flex-col gap-y-2">
-                    <label htmlFor="password" className="text-blue-400">Password</label>
+                  
+                  <label htmlFor="email" className={
+                      `${check ? 'text-red-700':'text-blue-700'}`
+                    }>Password</label>
                     
-                    <div className="relative flex border-blue-700 rounded border px-1 justify-between items-center">
+                    <div className= {`${check ?
+                    'relative flex border-red-700 rounded border px-1 justify-between items-center'
+                    : `relative flex border-blue-700 rounded border px-1 justify-between items-center`} `} >
                     <input
 
                     type={type}
                     value={password}
-                    className=" rounded outline-none  p-1 "
+                    className= {`rounded outline-none  p-1`}
                     onChange={e=>setPasswrod(e.target.value)}
                     id="password"  placeholder="Password..."/>
                     
@@ -77,7 +98,8 @@ function SignUpPage() {
             >SignUp</button>
 
             </div>
-
+            
+        <ToastContainer />
         </div>
     )
 }

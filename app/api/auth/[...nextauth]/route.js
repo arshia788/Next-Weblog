@@ -1,8 +1,9 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import {NextAuth} from 'next-auth/react';
-import { verifyPassword } from '@/utils/auth';
+import NextAuth from 'next-auth';
+
 import connectDB from '@/utils/connectDB';
 import User from '@/models/User';
+import { verifyPassword } from '@/utils/auth';
 
 const authOptions={
     session:{strategy:"jwt"},
@@ -10,14 +11,14 @@ const authOptions={
         CredentialsProvider({
             async authorize(credentials,req){
                 
+                const {email , password}= credentials;
+                
                 try {
                     await connectDB()
                 } catch (error) {
                     throw new Error("Failed to connect to DB")
                 }
-
-                const {email , password}= credentials;
-
+                
                 if(!email || !password) throw new Error("Invalid Data!")
 
                 const user= await User.findOne({email})
@@ -25,7 +26,8 @@ const authOptions={
                 if(!user) throw new Error("No user exists")
 
                 const isValid= await verifyPassword(password, user.password)
-
+                console.log(isValid);
+                
                 if(!isValid) throw new Error("wrong email or password")
                 
                 return {email}
@@ -36,4 +38,7 @@ const authOptions={
     ]
 }
 
-export default NextAuth(authOptions)
+
+// ! version app ro bayad injori benevisi.
+const handler= NextAuth(authOptions);
+export {handler as GET, handler as POST};

@@ -1,8 +1,10 @@
-import React from 'react'
+import SignIpPage from '@/components/templates/SignInPage'
 
 function page() {
   return (
-    <div>page</div>
+    <div>
+      <SignIpPage />
+    </div>
   )
 }
 
