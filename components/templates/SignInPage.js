@@ -29,7 +29,7 @@ function SignIpPage() {
         console.log(res);
 
         if(!res.error){
-          router.replace('/')
+          router.refresh('/')
         }else{
           setCheck(true)
           toast.error(res.error)
