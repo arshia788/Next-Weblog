@@ -1,5 +1,4 @@
 import {Schema, models, model} from 'mongoose';
-import { defaultHead } from 'next/head';
 
 
 const userSchema= new Schema({
