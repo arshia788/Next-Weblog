@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { FaEye } from "react-icons/fa6";
@@ -9,9 +9,12 @@ import { FaEyeSlash } from "react-icons/fa6";
 function SignUpPage() {
 
     const [email, setEmail] = useState('');
-    const [password, setPasswrod] = useState('password');
+    const [password, setPasswrod] = useState('');
+    const [type, setType]= useState('password')
     const router= useRouter()
 
+    
+    
     const signUpHandler=async()=>{
         const res= await fetch('/api/auth/signup',{
             method:"POST",
@@ -20,14 +23,13 @@ function SignUpPage() {
         })
         const data= await res.json()
         if(data.status === 'success') router.replace('/signin')
-
     }
 
     const clickHandler=()=>{
-        if(password === 'text'){
-            setPasswrod('password')
+        if(type === 'password'){
+            setType('text')
         }else{
-            setPasswrod('text')
+            setType('password')
         }
     }
 
@@ -52,13 +54,14 @@ function SignUpPage() {
                     <div className="relative flex border-blue-700 rounded border px-1 justify-between items-center">
                     <input
 
-                    type={password}
+                    type={type}
+                    value={password}
                     className=" rounded outline-none  p-1 "
                     onChange={e=>setPasswrod(e.target.value)}
-                    id="password" value={password} placeholder="Password..."/>
+                    id="password"  placeholder="Password..."/>
                     
                     {
-                        password === 'text' ?
+                        type === 'text' ?
                         <FaEye onClick={clickHandler} className="cursor-pointer"/>
                         
                         :
