@@ -19,10 +19,10 @@ export async function POST(req){
     }
 
     const body= await req.json();
-    console.log(body);
-    const {title,author,info,date, likes}= body;
+    const {title,author,info,date}= body.data;
 
-    if(!title || !info ){
+
+    if(!title || !info|| !author ){
         NextResponse.json({status:'failed', message:"Fill the inputs"})
     }
 
@@ -34,7 +34,7 @@ export async function POST(req){
 
     if(!user) NextResponse.json({status:'failed', message:"User doen'ts exists"})
 
-    user.blogs.push({title,author,info,date, likes})
+    user.blogs.push({title,author,info,date})
     user.save()
 
     return NextResponse.json({status:'success', message:"Blog Created."})

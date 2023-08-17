@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import InputButton from '../modules/InputButton';
-import { redirect } from 'next/navigation';
+import { useDispatch, useSelector } from "react-redux";
+
+import { created } from "@/redux/features/blogSlice/blogSlice";
+import { useRouter } from "next/navigation";
 
 function BlogForm() {
 
@@ -15,23 +18,23 @@ function BlogForm() {
         date: ''
     })
 
-    
+    const dispatch= useDispatch();
+    const router=useRouter();
+
     const changeHandler = (e) => {
         setBlog({...blog, [e.target.name]:e.target.value})
     }
 
     const addBlogHandler=async()=>{
-
         const res= await fetch('/api/addblog',{
             method:"POST",
             body:JSON.stringify({data:blog}),
             headers:{"Content-Type":"application/json"}
         })
-
         const data= await res.json()
-
-        if(data.status === 'success'){
-            redirect('/')
+        if(data.status === 'success') {
+            dispatch(created(true))
+            router.push('/')
         }
     }
 

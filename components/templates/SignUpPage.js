@@ -95,7 +95,7 @@ function SignUpPage() {
 
                 <p className="text-sm">Have An Account ? <Link
                     className="text-blue-700"
-                    href='/signup'>SignIn</Link> </p>
+                    href='/signin'>SignIn</Link> </p>
 
                 <button
                     onClick={signUpHandler}

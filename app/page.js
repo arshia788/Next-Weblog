@@ -1,8 +1,12 @@
-import React from 'react'
+import Counter from "@/components/Counter"
+
 
 function page() {
+
   return (
-    <div>page</div>
+    <div>
+      <Counter />
+    </div>
   )
 }
 
