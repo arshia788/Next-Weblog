@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import InputButton from '../modules/InputButton';
-import { headers } from "@/next.config";
-
+import { redirect } from 'next/navigation';
 
 function BlogForm() {
 
@@ -15,6 +14,7 @@ function BlogForm() {
         likes: 0,
         date: ''
     })
+
     
     const changeHandler = (e) => {
         setBlog({...blog, [e.target.name]:e.target.value})
@@ -23,13 +23,16 @@ function BlogForm() {
     const addBlogHandler=async()=>{
 
         const res= await fetch('/api/addblog',{
-            method:POST,
+            method:"POST",
             body:JSON.stringify({data:blog}),
             headers:{"Content-Type":"application/json"}
         })
+
         const data= await res.json()
-        console.log(data);
-        
+
+        if(data.status === 'success'){
+            redirect('/')
+        }
     }
 
 

@@ -6,10 +6,11 @@ import User from '@/models/User';
 import { verifyPassword } from '@/utils/auth';
 
 export const authOptions={
+    
     session:{strategy:"jwt"},
     providers:[
         CredentialsProvider({
-            async authorize(credentials,req){
+            async authorize(credentials){
                 
                 const {email , password}= credentials;
                 
@@ -26,7 +27,6 @@ export const authOptions={
                 if(!user) throw new Error("No user exists")
 
                 const isValid= await verifyPassword(password, user.password)
-                console.log(isValid);
                 
                 if(!isValid) throw new Error("wrong email or password")
                 

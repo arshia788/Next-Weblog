@@ -19,6 +19,7 @@ export async function POST(req){
     }
 
     const body= await req.json();
+    console.log(body);
     const {title,author,info,date, likes}= body;
 
     if(!title || !info ){
@@ -26,7 +27,6 @@ export async function POST(req){
     }
 
     const session= await getServerSession(authOptions)
-    console.log(session);
 
     if(!session) NextResponse.json({status:'failed', message:"You are not logged in"})
 
@@ -37,7 +37,7 @@ export async function POST(req){
     user.blogs.push({title,author,info,date, likes})
     user.save()
 
-    NextResponse.json({status:'success', message:"Blog Created."})
+    return NextResponse.json({status:'success', message:"Blog Created."})
 
 }
 

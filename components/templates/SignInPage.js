@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from "next/link";
 
 function SignIpPage() {
 
@@ -26,7 +27,6 @@ function SignIpPage() {
           email, password, redirect:false
         })
 
-        console.log(res);
 
         if(!res.error){
           router.refresh('/')
@@ -48,7 +48,7 @@ function SignIpPage() {
     return (
         <div className="flex justify-center items-center ">
 
-            <div className="flex flex-col h-80 gap-y-5 shadow-md shadow-gray-400
+            <div className="flex flex-col h-82 gap-y-5 shadow-md shadow-gray-400
              mt-12 p-3 rounded">
                 <h2 className="text-center text-blue-700 font-semibold">SignIn-Form</h2>
 
@@ -93,10 +93,14 @@ function SignIpPage() {
 
                     </div>
                 </div>
+            
+            <p className="text-sm">Don't have An Account ? <Link
+            className="text-blue-700"
+            href='/signup'>Create Acount</Link> </p>
 
             <button
             onClick={signInHandler}
-            className="bg-blue-700 rounded text-white py-1 mt-2"
+            className="bg-blue-700 rounded text-white py-1 mt-0.5"
             >SignIn</button>
 
             </div>

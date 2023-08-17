@@ -5,7 +5,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import {FiLogOut} from 'react-icons/fi';
 import { FaSignInAlt } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 
 
@@ -13,11 +13,10 @@ import { useRouter } from "next/navigation";
 
 async function LogOutButton({ session }) {
 
-    const router= useRouter();
 
     const logOut=()=>{
         signOut()
-        router.replace('/')
+        redirect('/')
     }
 
     return (
