@@ -7,9 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens:{
+        "xs":'100px',
+        "sm":"640px",
+        "md":"768px",
+      },
       minHeight:{
         "10/12":"83vh"
-      }
+      },
+      
     },
   },
   plugins: [],

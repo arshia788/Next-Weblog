@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.16",
+    "moment": "^2.29.4",
     "mongoose": "^7.4.3",
     "next": "13.4.16",
     "next-auth": "^4.22.1",
