@@ -9,8 +9,8 @@ const blogSlice= createSlice({
     name:'blog',
     initialState,
     reducers:{
-        created:(state, actions)=>{
-            state.blogCreatedValue =true
+        created:(state, action)=>{
+            state.blogCreatedValue =action.payload
         }
     }
 })

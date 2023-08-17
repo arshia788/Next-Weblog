@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputButton from '../modules/InputButton';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,6 +25,10 @@ function BlogForm() {
         setBlog({...blog, [e.target.name]:e.target.value})
     }
 
+    useEffect(()=>{
+        dispatch(created(false))
+    },[])
+
     const addBlogHandler=async()=>{
         const res= await fetch('/api/addblog',{
             method:"POST",
@@ -32,10 +36,12 @@ function BlogForm() {
             headers:{"Content-Type":"application/json"}
         })
         const data= await res.json()
+
         if(data.status === 'success') {
             dispatch(created(true))
             router.push('/')
         }
+
     }
 
 
