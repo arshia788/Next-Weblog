@@ -6,17 +6,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
 
 
-export async function GET(req){
 
-    const session= await getServerSession(authOptions);
-    console.log(session);
-
-    if(!session) return NextResponse.json({status:'failed', message:"You are not Logged in!"})
-    
-    
-    
-    return NextResponse.json({ message: "This Worked", success: true });
-}
 
 
 
