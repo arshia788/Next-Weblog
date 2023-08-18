@@ -1,11 +1,11 @@
-import Counter from "@/components/Counter"
+import HomePage from "@/components/templates/HomePage"
 
 
 function page() {
 
   return (
     <div>
-      <Counter />
+      <HomePage />
     </div>
   )
 }
