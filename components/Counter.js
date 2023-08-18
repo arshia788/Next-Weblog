@@ -10,12 +10,16 @@ import { useEffect } from "react";
 
 function Counter() {
 
-  const blog = useSelector(store => store.blog.blogCreatedValue)
+  const blog = useSelector(store => store.blog.blogCreatedValue);
+  const profileUpdated = useSelector(store => store.blog.blogProfileUpdated);
   
   useEffect(()=>{
-    if(blog){
+
+    if(blog || profileUpdated){
       toast.success("Blog Created")
+      toast.success("Profile updated")
     }
+    
   },[blog])
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import InputButton from '../modules/InputButton';
+import InputButton from './InputForm';
 import { useDispatch, useSelector } from "react-redux";
 
 import { created } from "@/redux/features/blogSlice/blogSlice";
