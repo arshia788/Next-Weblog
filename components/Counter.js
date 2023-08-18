@@ -1,26 +1,25 @@
 'use client';
 
-import { useDispatch, useSelector } from "react-redux";
-import blogSlice from "@/redux/features/blogSlice/blogSlice";
-
+import { useSelector } from "react-redux";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
 
+
 function Counter() {
 
   const blog = useSelector(store => store.blog.blogCreatedValue);
-  const profileUpdated = useSelector(store => store.blog.blogProfileUpdated);
+  const profileUpdate = useSelector(store => store.blog.blogProfileUpdated);
   
   useEffect(()=>{
 
-    if(blog || profileUpdated){
+    if(blog || profileUpdate){
       toast.success("Blog Created")
-      toast.success("Profile updated")
+      toast.success("Profile Updated :)")
     }
     
-  },[blog])
+  },[blog || profileUpdate])
 
   return (
     <div>

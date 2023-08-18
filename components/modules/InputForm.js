@@ -1,6 +1,6 @@
 import React from 'react'
 
-function InputButton({value, label, changeHandler, name, type}) {
+function InputForm({value, label, changeHandler, name, type}) {
   return (
     <div className='flex flex-col mb-4'>
         <label className='mb-2 text-gray-500' htmlFor={label}>{label}</label>
@@ -12,4 +12,4 @@ function InputButton({value, label, changeHandler, name, type}) {
   )
 }
 
-export default InputButton
+export default InputForm

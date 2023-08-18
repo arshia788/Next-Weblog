@@ -16,7 +16,6 @@ export async function POST(req){
     }
 
     const body= await req.json();
-    console.log(body);
 
     const {name, lastname, password}= body.data;
 
@@ -41,7 +40,23 @@ export async function POST(req){
 
 }
 
+export async function GET(req){
 
+    try {
+        await connectDB()
+    } catch (error) {
+        return NextResponse.json({status:'failed', message:"Failed connect to DB"})
+    }
+
+    const session= await getServerSession(authOptions)
+
+    const user= await User.findOne({email:session.user.email})
+
+    console.log(user);
+
+    return NextResponse.json({data:user})
+
+}
 
 
 

@@ -24,4 +24,3 @@ const blogSlice= createSlice({
 
 export default blogSlice.reducer;
 export const {created, profileUpdated}= blogSlice.actions;
-export const blogCreatedValue = store=> store.blog.blogCreatedValue

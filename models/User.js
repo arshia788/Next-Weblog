@@ -1,7 +1,7 @@
 import {Schema, models, model} from 'mongoose';
 
 
- const userSchema= new Schema({
+const userSchema= new Schema({
     email:{
         type:String,
         Required:true
@@ -30,6 +30,13 @@ import {Schema, models, model} from 'mongoose';
         type:Date,
         default:()=>Date.now(),
     },
+    name:{
+        type:String
+    }
+    ,
+    lastname:{
+        type:String
+    }
 })
 
 

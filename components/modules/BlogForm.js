@@ -61,10 +61,10 @@ function BlogForm() {
             </div>
 
             <div className='border border-blue-700 rounded p-4 mt-4 flex flex-col'>
-                <label className='mb-2 text-gray-500'>Info</label>
+                <label className='mb-3 text-gray-500'>Info:</label>
                 <textarea rows={4}
-                    className='shadow-sm shadow-gray-500 rounded-sm outline-none p-1
-                    focus:border focus:border-blue-700 resize-none'
+                    className=' rounded-sm outline-none p-1
+                    border border-blue-700 resize-none'
                     value={blog.info} onChange={changeHandler} name='info'>
 
                 </textarea>
