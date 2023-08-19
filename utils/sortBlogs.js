@@ -14,9 +14,11 @@ const sortBlogs=(users)=>{
 
 
     const lastData=[];
+
     const newData= blogObject.blogs.map(item=>{
         const last = item.map(blog=> lastData.push(blog))
     })
+
     
 
     return lastData
@@ -24,13 +26,3 @@ const sortBlogs=(users)=>{
 }
 
 export default sortBlogs;
-
-
-
-
-
-
-
-
-
-
