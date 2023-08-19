@@ -1,9 +1,9 @@
-
 import Layout from '@/components/layout/Layout'
 import Providers from '@/redux/Providers';
 
 import './globals.css'
 import { Inter } from 'next/font/google';
+import NextAuthProvider from '@/providers/NextAuthProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +17,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body className={inter.className}>
-        <Providers>
-          <Layout>
-            {children}
-          </Layout>
-        </Providers>
+        <NextAuthProvider>
+          <Providers>
+            <Layout>
+              {children}
+            </Layout>
+          </Providers>
+        </NextAuthProvider>
 
       </body>
     </html>

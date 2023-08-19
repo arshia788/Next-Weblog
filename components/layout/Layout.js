@@ -19,7 +19,7 @@ async function Layout({ children }) {
 
                 <ul className="flex items-center gap-x-4 text-white xs:text-sm">
                     <li>
-                        <Link href="/blogs">My Blogs</Link>
+                        <Link href="/myblogs">My Blogs</Link>
                     </li>
                     <li>
                         <Link href="/profile">Profile</Link>
