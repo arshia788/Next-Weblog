@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { useEffect, useState } from "react";
 import CardBlog from "../modules/CardBlog";
 
@@ -32,6 +33,7 @@ function HomePage() {
     if(profileUpdate){
       toast.success("Profile Updated :)")
     }
+    
 
   }, [])
 

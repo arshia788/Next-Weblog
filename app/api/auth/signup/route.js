@@ -12,9 +12,9 @@ export async function POST(req){
     }
 
     const body= await req.json()
-    const {email, password}= body;
+    const {email, password, name}= body;
 
-    if(!email || !password){
+    if(!email || !password || !name){
         return NextResponse.json({status:'failed', message:"Invalid Data"})
     }
 
@@ -24,7 +24,7 @@ export async function POST(req){
 
     const hashedPassword= await hashPassword(password)
 
-    const newUser= await User.create({email, password:hashedPassword})
+    const newUser= await User.create({name , email, password:hashedPassword})
 
     return NextResponse.json({status:'success', message:"User Created"})
 }

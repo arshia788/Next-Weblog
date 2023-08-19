@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function SignUpPage() {
 
+    const [name, setname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPasswrod] = useState('');
     const [type, setType] = useState('password')
@@ -23,7 +24,7 @@ function SignUpPage() {
     const signUpHandler = async () => {
         const res = await fetch('/api/auth/signup', {
             method: "POST",
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ name,email, password }),
             headers: { "Content-Type": "application/json" }
         })
         const data = await res.json()
@@ -50,8 +51,22 @@ function SignUpPage() {
             <div className="flex flex-col h-82 gap-y-5 shadow-md shadow-gray-400
              mt-12 p-3 rounded">
                 <h2 className="text-center text-blue-700 font-semibold">SignUp-Form</h2>
-
+                
                 <div className="flex flex-col gap-y-2 mt-3 ">
+
+                    <label htmlFor="name" className={
+                        `${check ? 'text-red-700' : 'text-blue-700'}`
+                    }>Name</label>
+
+                    <input
+                        className={`${check ?
+                            'relative flex outline-none border-red-700 rounded border px-1 justify-between items-center p-1'
+                            : `relative flex outline-none border-blue-700 rounded border px-1 justify-between items-center p-1`} `}
+                        onChange={e => setname(e.target.value)}
+                        id="name" value={name} placeholder="Name..." />
+                </div>
+
+                <div className="flex flex-col gap-y-2  ">
 
                     <label htmlFor="email" className={
                         `${check ? 'text-red-700' : 'text-blue-700'}`
@@ -62,7 +77,7 @@ function SignUpPage() {
                             'relative flex outline-none border-red-700 rounded border px-1 justify-between items-center p-1'
                             : `relative flex outline-none border-blue-700 rounded border px-1 justify-between items-center p-1`} `}
                         onChange={e => setEmail(e.target.value)}
-                        id="email" value={email} placeholder="Email..." />
+                        id="email" value={email} type="email" placeholder="Email..." />
                 </div>
 
                 <div className="flex flex-col gap-y-2">

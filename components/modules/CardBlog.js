@@ -3,7 +3,6 @@ import React from 'react'
 
 function CardBlog({ data }) {
 
-  console.log(data);
 
   const date = data.createdAt ? moment(data.createdAt).utc().format('YYYY-MM-DD') : ''
 

@@ -12,6 +12,8 @@ async function page() {
 
 
     const session= await getServerSession(authOptions)
+    console.log(session);
+    
     if(!session) redirect('/signin')
 
     try {

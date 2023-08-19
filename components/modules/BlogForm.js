@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { created } from "@/redux/features/blogSlice/blogSlice";
 import { useRouter } from "next/navigation";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function BlogForm() {
 
     const [blog, setBlog] = useState({
@@ -38,8 +41,10 @@ function BlogForm() {
         const data= await res.json()
 
         if(data.status === 'success') {
-            dispatch(created(true))
             router.push('/')
+            dispatch(created(true))
+        }else{
+            toast.error(data.message)
         }
 
     }
@@ -74,6 +79,8 @@ function BlogForm() {
             onClick={addBlogHandler}
             className='bg-blue-700 rounded text-white px-2 py-1 mt-6'
             >Add-Blog</button>
+
+            <ToastContainer />
         </div>
     )
 }

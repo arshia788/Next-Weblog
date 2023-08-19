@@ -30,7 +30,7 @@ export const authOptions={
                 
                 if(!isValid) throw new Error("wrong email or password")
                 
-                return {email}
+                return {email, name:user.name}
             }
 
             
