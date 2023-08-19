@@ -1,16 +1,25 @@
 
-const sortBlogs=(blogs)=>{
+const sortBlogs=(users)=>{
     
     const blogObject= {};
+    blogObject.blogs=[]
     
-    blogs.map(item=>{
-        if(!blogObject[item.blogs]) blogObject.blogs=[];
+    users.map(item=>{
+
+        // if(!blogObject[item.blogs]) blogObject.blogs=[];
 
         blogObject.blogs.push(item.blogs)
     })
 
-    const newData= blogObject.blogs[0]
-    return newData
+
+
+    const lastData=[];
+    const newData= blogObject.blogs.map(item=>{
+        const last = item.map(blog=> lastData.push(blog))
+    })
+    
+
+    return lastData
 
 }
 

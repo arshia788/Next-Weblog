@@ -17,7 +17,7 @@ export async function GET(req){
     const newData= sortBlogs(users);
 
 
-    return NextResponse.json({status:'success', data:newData})
+    return NextResponse.json({status:'success',data:newData})
 }
 
 
