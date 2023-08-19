@@ -62,17 +62,17 @@ function ProfilePage() {
             <div className="flex flex-col gap-y-2 w-fit mt-4">
 
                 {
-                    userCheck.name ? <ProfileInfo data={userCheck}/> 
+                    userCheck.name && userCheck.lastname ? <ProfileInfo data={userCheck}/> 
                     :
                     
-                    <ProfileForm profile={profile} changeHandler={changeHandler}/>
+                    <ProfileForm userCheck={userCheck} profile={profile} changeHandler={changeHandler}/>
                 }
 
             </div>
 
 
             {
-                !userCheck.name && !userCheck.lastname && 
+                !userCheck.lastname && 
                 <button
                     onClick={addHandler}
                     className="text-white bg-blue-700 rounded px-2 py-1"

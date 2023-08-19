@@ -10,7 +10,12 @@ function ProfileInfo({data}) {
             :
             null
         }
+        
+        {data.lastname ? 
             <p className='text-blue-700'>LastName: <span className='text-black'>{data.lastname}</span></p>
+            :
+            null
+        }
             <p className='text-blue-700'>Email: <span className='text-black'>{data.email}</span></p>
             
         </div>

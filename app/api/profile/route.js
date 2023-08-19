@@ -19,7 +19,7 @@ export async function POST(req){
 
     const {name, lastname, password}= body.data;
 
-    if(!name || !lastname || !password) return NextResponse.json({staus:'failed', message:"invalid data"})
+    if(!lastname || !password) return NextResponse.json({staus:'failed', message:"invalid data"})
 
     const session= await getServerSession(authOptions)
 
@@ -31,7 +31,6 @@ export async function POST(req){
 
     if(!isValid) return NextResponse.json({status:'failed', message:"Password is wrong"});
 
-    user.name=name;
     user.lastname=lastname;
     user.save();
 
