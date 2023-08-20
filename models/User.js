@@ -23,7 +23,12 @@ const userSchema= new Schema({
             likes:{
                 type:Number,
                 default:0
+            },
+            likedBy:{
+                type:Array,
+                default:[]
             }
+            ,
         }
     ],
     createdAt:{

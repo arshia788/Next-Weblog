@@ -1,5 +1,5 @@
 'use client';
-import { useSession } from 'next-auth/react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -11,24 +11,29 @@ import moment from 'moment'
 import { FaThumbsUp } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa6";
 
-function CardBlog({ Data, route }) {
+function CardBlog({ Data, route , fetchBlogs}) {
+
+  const {likes}= Data;
 
   const date = Data.createdAt ? moment(Data.createdAt).utc().format('YYYY-MM-DD') : null;
 
   const router = useRouter();
-  // const { data } = useSession()
-  // console.log(data);
 
   // ? baray in omadi inja id ro az tag p gerefti chon vaghti data._id midadi componentesh hanooz bala nayomadeh bod va kar nmikard. 
-
   // * pas omadi on data ro be onvan props behesh dadi. 
 
   const likeBlog = async (id) => {
-      const res = await fetch(`/api/blogs/${id}`)
+      const res = await fetch(`/api/blogs/${id}`,{
+        method:"PATCH",
+        body:JSON.stringify({data:likes+1}),
+        headers:{"Content-Type":"application/json"}
+      })
+
       const info = await res.json()
+      console.log(info);
       
       if (info.status === 'success'){
-        router.refresh('/')
+        fetchBlogs()
       }else{
         toast.error(info.message)
       }
@@ -64,7 +69,7 @@ function CardBlog({ Data, route }) {
           onClick={() => likeBlog(Data._id)}
         ><FaThumbsUp /></p>
 
-        <span>: {Data.likes}</span>
+        <span>: {likes}</span>
 
       </div>
 

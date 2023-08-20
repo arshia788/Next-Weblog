@@ -47,6 +47,7 @@ function HomePage() {
     if (data) setBlogs(data.data)
   }
 
+  
   return (
     <div>
       <h2 className="my-4 text-center font-medium">Wellcome To Your Blog.</h2>
@@ -56,7 +57,7 @@ function HomePage() {
         {blogs.map(item => {
           return (
             <div key={item._id} className="xs:col-span-12 sm:col-span-6 md:col-span-4">
-              <CardBlog Data={item} />
+              <CardBlog fetchBlogs={fetchBlogs} Data={item} />
             </div>
           )
 
