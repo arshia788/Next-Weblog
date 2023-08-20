@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import CardBlog from "../modules/CardBlog";
 
 import { created } from "@/redux/features/blogSlice/blogSlice";
-import { profileUpdated } from "@/redux/features/blogSlice/blogSlice";
+import { profileUpdated, blogUpdated } from "@/redux/features/blogSlice/blogSlice";
 
 function HomePage() {
 
@@ -17,6 +17,8 @@ function HomePage() {
 
   const blog = useSelector(store => store.blog.blogCreatedValue);
   const profileUpdate = useSelector(store => store.blog.blogProfileUpdated);
+  const blogUpdate = useSelector(store => store.blog.blogUpdate);
+  console.log(blogUpdate);
 
   const dispatch=useDispatch();
 
@@ -24,14 +26,16 @@ function HomePage() {
 
     dispatch(created(false))
     dispatch(profileUpdated(false))
+    dispatch(blogUpdated(false))
     
     fetchBlogs()
 
     if(blog){
       toast.success("Blog Created")
-    }
-    if(profileUpdate){
+    }else if(profileUpdate){
       toast.success("Profile Updated :)")
+    }else if(blogUpdate){
+      toast.success("Blog Updated :)")
     }
     
 

@@ -6,7 +6,7 @@ function InputForm({value, label, changeHandler, name, type}) {
         <label className='mb-2 text-gray-500' htmlFor={label}>{label}</label>
 
         <input value={value} id={label} onChange={changeHandler} name={name} type={type}
-        className='border border-blue-700 px-3 py-1 rounded-sm'
+        className='border outline-none border-blue-700 px-3 py-1 rounded-sm'
         />
     </div>
   )

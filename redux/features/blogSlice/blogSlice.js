@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState={
     blogCreatedValue:false,
-    blogProfileUpdated:false
+    blogProfileUpdated:false,
+    blogUpdate:false,
 }
 
 const blogSlice= createSlice({
@@ -15,6 +16,9 @@ const blogSlice= createSlice({
         },
         profileUpdated:(state, action)=>{
             state.blogProfileUpdated =action.payload
+        },
+        blogUpdated:(state, action)=>{
+            state.blogUpdate =action.payload
         }
     }
 })
@@ -23,4 +27,4 @@ const blogSlice= createSlice({
 
 
 export default blogSlice.reducer;
-export const {created, profileUpdated}= blogSlice.actions;
+export const {created, profileUpdated, blogUpdated}= blogSlice.actions;

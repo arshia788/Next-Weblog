@@ -60,8 +60,8 @@ function SignIpPage() {
 
                     <input 
                     className= {`${check ?
-                      'relative flex border-red-700 rounded border px-1 justify-between items-center p-1'
-                      : `relative flex border-blue-700 rounded border px-1 justify-between items-center p-1`} `}
+                      'relative flex border-red-700 rounded border px-1 justify-between items-center p-1 outline-none'
+                      : `relative flex border-blue-700 rounded border px-1 justify-between items-center p-1 outline-none`} `}
                     onChange={e=>setEmail(e.target.value)}
                     id="email" value={email} placeholder="Email..."/>
                 </div>
