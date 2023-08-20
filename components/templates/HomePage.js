@@ -15,10 +15,10 @@ function HomePage() {
 
   const [blogs, setBlogs] = useState([]);
 
+
   const blog = useSelector(store => store.blog.blogCreatedValue);
   const profileUpdate = useSelector(store => store.blog.blogProfileUpdated);
   const blogUpdate = useSelector(store => store.blog.blogUpdate);
-  console.log(blogUpdate);
 
   const dispatch=useDispatch();
 
@@ -56,7 +56,7 @@ function HomePage() {
         {blogs.map(item => {
           return (
             <div key={item._id} className="xs:col-span-12 sm:col-span-6 md:col-span-4">
-              <CardBlog data={item} />
+              <CardBlog Data={item} />
             </div>
           )
 

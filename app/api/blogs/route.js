@@ -7,7 +7,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(req){
-
     try {
         await connectDB()
     } catch (error) {
@@ -23,13 +22,3 @@ export async function GET(req){
 
     return NextResponse.json({status:'success',data:newData})
 }
-
-
-
-
-
-
-
-
-
-

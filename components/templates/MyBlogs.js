@@ -34,7 +34,7 @@ function MyBlogs(){
                              sm:col-span-6 
                              md:col-span-4"
                             >
-                                <CardBlog route={myRoute} data={item}/>
+                                <CardBlog route={myRoute} Data={item}/>
                             </div>
                         )
                     })
